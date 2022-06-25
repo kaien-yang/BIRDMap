@@ -1,0 +1,94 @@
+nav .navbar-brand
+{
+    /* size for brand */
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .dark-blue
+{
+    color: #046bde;
+}
+
+.dark-blue
+{
+    color: #046bde;
+}
+
+nav .navbar-brand .light-blue
+{
+    color: #65c2f5;
+}
+
+.light-blue
+{
+    color: #65c2f5;
+}
+
+nav .navbar-brand .scarlet
+{
+    color: #d8051d;
+}
+
+.scarlet
+{
+    color: #d8051d;
+}
+
+nav .navbar-brand .purple
+{
+    color: #611ff6;
+}
+
+.purple
+{
+    color: #611ff6;
+}
+
+nav .navbar-brand .grey
+{
+    color: #888888;
+}
+
+.grey
+{
+    color: #888888;
+}
+
+main .form-control
+{
+    /* Center form controls */
+    display: inline-block;
+
+    /* Override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* Scroll horizontally as needed */
+    overflow-x: auto;
+
+    /* Center contents */
+    text-align: center;
+}
+
+main img
+{
+    /* Constrain images on small screens */
+    max-width: 100%;
+}
+
+.btn-grey
+{
+    background-color: #F8F8F8;
+    border-color: #F8F8F8;
+    color: #5E5E5E;
+}
+
+.btn-grey:hover, .btn-grey:active, .btn-grey:focus
+{
+    background-color: #dfdfdf!important;
+    border-color: #dfdfdf!important;
+    color: #5E5E5E!important;
+}

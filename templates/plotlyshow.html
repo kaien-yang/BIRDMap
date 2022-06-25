@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+    <!-- set navbar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-light border">
+        <a class="navbar-brand" href="/">
+            <span class="dark-blue">B</span>
+            <span class="light-blue">I</span>
+            <span class="scarlet">R</span>
+            <span class="purple">D</span>
+            <span class="grey">Map</span>
+        </a>
+        <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-target="#navbar" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav mr-auto mt-2">
+                <li class="nav-item"><a class="nav-link" href="/">Search</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <header>
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} border text-center" role="alert">
+                        {{ get_flashed_messages() | join(" ") }}
+                    </div>
+                {% endfor %}
+            </header>
+        {% endif %}
+    {% endwith %}
+
+    <div id="myDiv"></div>
+
+    <footer class="small text-center text-muted">
+        Data from <a href="https://www.xeno-canto.org/">Xeno-Canto</a>. View <a href="https://www.xeno-canto.org/about/terms">Xeno-Canto's Terms of Use</a>.
+    </footer>
+
+    <script type="text/javascript" src="/static/plotlyshow_script.js"></script>
+    <script type="text/javascript">
+        var result = generate_graph( {{ date_str | safe }}, {{ lon | safe }}, {{ lat | safe }}, {{ date_ind | safe }}, "{{ title | safe }}" )
+        Plotly.newPlot("myDiv", result[0], result[1], result[2]);
+    </script>
+
+{% endblock %}

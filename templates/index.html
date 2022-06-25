@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-md navbar-light bg-light border">
+        <div class="navbar-expand" id="navbar">
+            <ul class="navbar-nav mr-auto mt-2">
+                <li class="nav-item"><a class="nav-link" href="/">Search</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <header>
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }} border text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+                {% endfor %}
+            </header>
+          {% endif %}
+    {% endwith %}
+
+    <main class="container p-5">
+        <form action="/show-map" method="post">
+            <a class="navbar-brand" href="/" style="font-size:40px; margin-left: auto; margin-right: auto;">
+                <span class="dark-blue">B</span>
+                <span class="light-blue">I</span>
+                <span class="scarlet">R</span>
+                <span class="purple">D</span>
+                <span class="grey">Map</span></a>
+
+            <div class="ui-widget mb-5">
+                <input id="searchbar" style = "margin-left: auto; margin-right: auto;" class="form-control" autofocus name="species" placeholder="Bird species" type="text">
+            </div>
+
+            <button class="btn btn-primary btn-grey" type="submit" name="action" value="search">BIRDMap Search</button>
+            <button class="btn btn-primary btn-grey" type="submit" name="action" value="ifl">I'm Feeling Lucky</button>
+        </form>
+    </main>
+
+    <footer class="small text-center text-muted">
+        "The birds of the sky nest by the waters; they sing among the branches." - Psalm 104:12
+        <br>
+        Coded by <a href="https://www.linkedin.com/in/kaienyang/">Kaien Yang</a>
+    </footer>
+
+    <script>
+        $( "#searchbar" ).autocomplete({
+            maxResults: 5,
+            source: function(request, response) {
+                var results = $.ui.autocomplete.filter( {{ birds | safe }}, request.term);
+                response(results.slice(0, this.options.maxResults));
+            }
+        });
+    </script>
+{% endblock %}
